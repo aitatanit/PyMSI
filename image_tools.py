@@ -75,7 +75,7 @@ class Speclist:
 
 
 ## A 2D image representing the spatial distribution of a 
-## mass interval
+## mass interval 
 class MSI:
     def __init__(self,speclist,xscans,yscans):
         ''' Construct a 2D array from a Speclist'''
@@ -84,6 +84,8 @@ class MSI:
             self.image[s.y,s.x] = sum(s.intensity)
     def __call__(self):
         return self.image
+
+
 
 
 ## These two classes define Region of interests and 
@@ -197,6 +199,23 @@ class HookCreator:
                     self.dst.append(np.transpose(np.vstack([np.array(self.new_x),np.array(self.new_y)])))
     def gethooks(self):
         return Hooks(self.src[0],self.dst[0])
+
+
+
+## some helpful functions ----------------------------------------  
+
+## Fancyer plots
+def makeRGBA(M,R = 255, G = 255, B = 255, Thr = 0.0):
+''' Convert a 2D mp.array M in a 4 dim RGBA np.array'''
+    RGBA = np.zeros([M.shape[0],M.shape[1],4]) ## the empty RGBA cube
+    idvisible = M > Thr
+    RGBA[idvisible,3] = 1.0
+    RGBA[:,:,0] = ((M/np.max(M))*R)/255 ## red
+    RGBA[:,:,1] = ((M/np.max(M))*G)/255 ## green
+    RGBA[:,:,2] = ((M/np.max(M))*B)/255 ## blue
+    return(RGBA)
+
+
 
 
 
