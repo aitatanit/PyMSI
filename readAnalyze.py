@@ -3,7 +3,6 @@ import pylab as plt
 import os, sys, struct
 import matplotlib
 
-
 class readanalyze():
   
     def __init__(self):
@@ -11,13 +10,15 @@ class readanalyze():
        
     def readfile(self):
       '''Function to pass analyze folder path'''
-      while 1:
+      path = '/home/mridula/Documents/MSimaging/FromPietero/MSImaging/sub/AREA/'
+      
+      '''while 1:
         path = raw_input("Enter analyze files folder path : ")
         if path == "":
            print "Retry"
         else:
 	   print "Path ", path
-	   break
+	   break'''
            
       dirs = os.listdir(path)
       for file in dirs:
@@ -87,26 +88,26 @@ class readanalyze():
 	return self.mass  
       
     def readintensity(self,filename,mass,nx,ny):
-      '''Function reading intensity file, input required mass file and nx ,ny value, which shows number of spectra in 
-         MSI data. Here user can define mass range to get spectra for specific mass range'''
-      userinput = raw_input("User want to define mass range : Y or N : ")
-      if (userinput == 'Y'):
-	 massrange= [x for x in raw_input("Enter mass range in comma separated form: ").split(',')]
-         mass1, mass2 = int(massrange[0]), int(massrange[1])
-      else:
-	  mass1, mass2 = min(self.mass)[0], max(self.mass)[0]
-      id = (self.mass >= mass1) & (self.mass <= mass2)
-      index = np.where(id ==True)[0]
-      self.spectra = np.zeros(shape=(index.size, self.nx *self.ny))
-      spectra1 = np.zeros(shape=(self.mass.size,1))
-      newmassrange = self.mass[index]
-      bytes, endian = 2, 'H'
-      with open(filename,'rb') as f:
- 	      for k in range(self.nx*self.ny):
-		    for i in range(self.mass.size):   
-			spectra1[i,0] = struct.unpack(endian,f.read(bytes))[0]
-                    self.spectra[:,k] = spectra1[index,0]				
-	      return(self.spectra,newmassrange)
+        '''Function reading intensity file, input required mass file and nx ,ny value, which shows number of spectra in
+        MSI data. Here user can define mass range to get spectra for specific mass range'''
+        userinput = raw_input("User want to define mass range : Y or N : ")
+        if (userinput == 'Y'):
+           massrange= [x for x in raw_input("Enter mass range in comma separated form: ").split(',')]
+           mass1, mass2 = int(massrange[0]), int(massrange[1])
+        else:
+           mass1, mass2 = min(self.mass)[0], max(self.mass)[0]
+        id = (self.mass >= mass1) & (self.mass <= mass2)
+        index = np.where(id ==True)[0]
+        self.spectra = np.zeros(shape=(index.size, self.nx *self.ny))
+        spectra1 = np.zeros(shape=(self.mass.size,1))
+        newmassrange = self.mass[index]
+        bytes, endian = 2, 'H'
+        with open(filename,'rb') as f:
+             for k in range(self.nx*self.ny):
+                   for i in range(self.mass.size):
+                          spectra1[i,0] = struct.unpack(endian,f.read(bytes))[0]
+                   self.spectra[:,k] = spectra1[index,0]
+        return(self.spectra,newmassrange)
 
 
 class Spectrum(readanalyze):
@@ -128,10 +129,19 @@ class Spectrum(readanalyze):
       intensity = np.sqrt(intensity)
       return intensity
     def ticnorm(self,intensity):
-       '''Perform total ion current normalisation'''
-       for i in range(intensity.shape[1]):
+      '''Perform total ion current normalisation'''
+      for i in range(intensity.shape[1]):
 	   intensity[:,i] = intensity[:,i]/sum(intensity[:,i])     
-       return intensity   
+      return intensity   
+    def convert(self,m):
+      '''Convert analyze 7.5 object into speclist object; input required is m object from Spectrum class'''
+      self.ms = np.zeros(m.intensity.shape[1])
+      self.ms = list(self.ms)
+      for i in range(len(self.ms)):
+         self.ms[i] = np.zeros(shape=(m.mass.size,2))
+         self.ms[i][:,0] = m.mass[:,0]
+         self.ms[i][:,1] = m.intensity[:,i] 
+      return self.ms
     
 class MSI:
     '''Class MSI to return MSI image as an output. Input required is Intensity matrix and image x, y co-ordinate. Information
@@ -147,15 +157,6 @@ class MSI:
     def __call__(self):   
       return self.image
  
-class convert:
-    '''Convert analyze 7.5 object into speclist object; input required is m object from Spectrum class'''
-    def __init__(self,m):
-      self.ms = np.zeros(m.intensity.shape[1])
-      self.ms = list(self.ms)
-      for i in range(len(self.ms)):
-         self.ms[i] = np.zeros(shape=(m.mass.size,2))
-         self.ms[i][:,0] = m.mass[:,0]
-         self.ms[i][:,1] = m.intensity[:,i] 
-      return self.ms
+
        
      
