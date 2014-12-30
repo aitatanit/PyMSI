@@ -1,5 +1,5 @@
 ## msiMatrix : this class represent MSI 2-Dmatrix, contstructed through summation of 
-## intensity value at each spatial dimension. The constructuctor requires:
+##  intensity value at each spatial dimension. The constructuctor requires:
 ## - a list of mass spectra
 ## - [x,y] dimensions of raster
 
