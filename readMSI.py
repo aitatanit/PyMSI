@@ -69,23 +69,22 @@ def readAnalyzet2m(filename):
 
 ## read img
 
-def readAnalyzeimg(filename,mass, massrange = []):
+def readAnalyzeimg(filename,mass, spec = 5,massrange = []):
     '''Function reading intensity file, it requires the mass file as an input.
      Here user can define mass range to get spectra for specific mass range'''
     
     if (massrange == []):
        mass1, mass2 = min(mass)[0], max(mass)[0]	
     else:
-       massrange1 = [massrange.split(',')]
-       mass1, mass2 = int(massrange1[0]), int(massrange1[1])
+       mass1, mass2 = massrange[0], massrange[1]
     id = (mass >= mass1) & (mass <= mass2)
     index = np.where(id ==True)[0]
-    spectra = np.zeros(shape=(index.size, mass.size))
+    spectra = np.zeros(shape=(index.size, spec))
     spectra1 = np.zeros(shape=(mass.size,1))
     newmassrange = mass[index]
     bytes, endian = 2, 'H'
     with open(filename,'rb') as f:
-         for k in range(mass.size):
+         for k in range(spec):
                for i in range(mass.size):
                       spectra1[i,0] = struct.unpack(endian,f.read(bytes))[0]
                spectra[:,k] = spectra1[index,0]
