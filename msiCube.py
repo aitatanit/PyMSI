@@ -14,6 +14,6 @@ class msiCube:
     self.mz = m.mz
     self.cube = np.zeros([m.mz.size,dims[1],dims[0]])
     for s in speclist.spectra:
-        self.cube[:,s.y,s.x]= s.intensity
+        self.cube[s.x,s.y,:]= s.intensity
   def __call__(self):
     return (self.cube,self.mz)    
