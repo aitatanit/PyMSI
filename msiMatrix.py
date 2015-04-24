@@ -12,3 +12,7 @@ class msiMatrix:
   def __call__(self):
     return self.marix
   
+
+
+## Notes: the dimensions here anre redundant, it should work only
+## for speclists with the encoded positions ...

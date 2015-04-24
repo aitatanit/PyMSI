@@ -28,49 +28,37 @@ r_importMS = getimportMS()
 
 
 
-## For MSI one has to deal with list of spectra, each element
-## is identified by a x,y position
-## some methods for normalization and scaling are also included
-class Speclist:
-    def __init__(self,mylist):
-        ''' A list of spectra'''
-        self.spectra = [Spectrum(x) for x in mylist]
-    def __getitem__(self,index):
-        return self.spectra[index]
-    def slice(self,window):
-        ''' Slice a Speclist with a window (mzmin,mzmax)'''
-        for s in self.spectra:
-            s.slice(window)
-    def addcoordinates(self,xscans,yscans):
-        ''' Add the coordinates to each spectrum '''
-        ys = np.repeat(range(0,yscans),xscans)
-        xs = np.repeat(range(0,xscans),yscans)
-        xs = xs.reshape((xscans,yscans))
-        xs[:,range(1,yscans,2)] = xs[::-1,range(1,yscans,2)]
-        xs = xs.flatten('F')
-        for i in range(0,len(self.spectra)):
-            self.spectra[i].x = xs[i]
-            self.spectra[i].y = ys[i]
-    def radq(self):
-        ''' Performa square root transforamtion of all the spectra'''
-        for i in range(0,len(self.spectra)):
-            self.spectra[i].intensity = np.sqrt(self.spectra[i].intensity)
-    def ticnorm(self):
-        ''' Perfor a total ion current normalization of the spectra'''
-        for i in range(0,len(self.spectra)):
-            self.spectra[i].intensity = self.spectra[i].intensity/sum(self.spectra[i].intensity)
-
-
-## A 2D image representing the spatial distribution of a 
-## mass interval 
-class MSI:
-    def __init__(self,speclist,xscans,yscans):
-        ''' Construct a 2D array from a Speclist'''
-        self.image = np.zeros([yscans,xscans])
-        for s in speclist.spectra:
-            self.image[s.y,s.x] = sum(s.intensity)
-    def __call__(self):
-        return self.image
+# ## For MSI one has to deal with list of spectra, each element
+# ## is identified by a x,y position
+# ## some methods for normalization and scaling are also included
+# class Speclist:
+#     def __init__(self,mylist):
+#         ''' A list of spectra'''
+#         self.spectra = [Spectrum(x) for x in mylist]
+#     def __getitem__(self,index):
+#         return self.spectra[index]
+#     def slice(self,window):
+#         ''' Slice a Speclist with a window (mzmin,mzmax)'''
+#         for s in self.spectra:
+#             s.slice(window)
+#     def addcoordinates(self,xscans,yscans):
+#         ''' Add the coordinates to each spectrum '''
+#         ys = np.repeat(range(0,yscans),xscans)
+#         xs = np.repeat(range(0,xscans),yscans)
+#         xs = xs.reshape((xscans,yscans))
+#         xs[:,range(1,yscans,2)] = xs[::-1,range(1,yscans,2)]
+#         xs = xs.flatten('F')
+#         for i in range(0,len(self.spectra)):
+#             self.spectra[i].x = xs[i]
+#             self.spectra[i].y = ys[i]
+#     def radq(self):
+#         ''' Performa square root transforamtion of all the spectra'''
+#         for i in range(0,len(self.spectra)):
+#             self.spectra[i].intensity = np.sqrt(self.spectra[i].intensity)
+#     def ticnorm(self):
+#         ''' Perfor a total ion current normalization of the spectra'''
+#         for i in range(0,len(self.spectra)):
+#             self.spectra[i].intensity = self.spectra[i].intensity/sum(self.spectra[i].intensity)
 
 
 
@@ -192,17 +180,6 @@ class HookCreator:
 ## some helpful functions ----------------------------------------  
 
 ## Fancyer plots
-def makeRGBA(M,R = 255, G = 255, B = 255, Thr = 0.0):
-''' Convert a 2D mp.array M in a 4 dim RGBA np.array'''
-    RGBA = np.zeros([M.shape[0],M.shape[1],4]) ## the empty RGBA cube
-    idvisible = M > Thr
-    RGBA[idvisible,3] = 1.0
-    RGBA[:,:,0] = ((M/np.max(M))*R)/255 ## red
-    RGBA[:,:,1] = ((M/np.max(M))*G)/255 ## green
-    RGBA[:,:,2] = ((M/np.max(M))*B)/255 ## blue
-    return(RGBA)
-
-
 
 
 

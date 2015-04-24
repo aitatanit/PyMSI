@@ -7,9 +7,9 @@ The module provides function to load the data stored in the following formats.
 
 Analyze7.5
 The data are stored in three different files: 
-- .hdr : the header file contains informations about the image spatial properties 
-- .t2m : this file contains the m/z scale of the mass spectra. Note: the mass scale is the same for all the spectra (32 bit Long)
-- .img : this file contains the actual intensity values recorded at each position for each m/z value.
+* .hdr : the header file contains informations about the image spatial properties 
+* .t2m : this file contains the m/z scale of the mass spectra. Note: the mass scale is the same for all the spectra (32 bit Long)
+* .img : this file contains the actual intensity values recorded at each position for each m/z value.
 
 
 

@@ -91,6 +91,11 @@ def readAnalyzeimg(filename,mass, spec = 5,massrange = []):
     return(spectra,newmassrange)
 
 
+## Wrapper which uses the three previous functions ...
+
+
+
+
 
 
 ## mzXML  ###################################################################################################################
