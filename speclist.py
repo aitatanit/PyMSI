@@ -30,4 +30,22 @@ class speclist:
         	s.mz = s.mz[idin]
         	s.intensity = s.intensity[idin]
         return(newspec)
+     def addcoordinates(self,xscans,yscans):
+        ''' Add the coordinates to each spectrum '''
+        ys = np.repeat(range(0,yscans),xscans)
+        xs = np.repeat(range(0,xscans),yscans)
+        xs = xs.reshape((xscans,yscans))
+        xs[:,range(1,yscans,2)] = xs[::-1,range(1,yscans,2)]
+        xs = xs.flatten('F')
+        for i in range(0,len(self.spectra)):
+            self.spectra[i].x = xs[i]
+            self.spectra[i].y = ys[i]
+    def radq(self):
+        ''' Performa square root transforamtion of all the spectra'''
+        for i in range(0,len(self.spectra)):
+            self.spectra[i].intensity = np.sqrt(self.spectra[i].intensity)
+    def ticnorm(self):
+        ''' Perfor a total ion current normalization of the spectra'''
+        for i in range(0,len(self.spectra)):
+            self.spectra[i].intensity = self.spectra[i].intensity/sum(self.spectra[i].intensity)
    

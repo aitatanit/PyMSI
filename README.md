@@ -2,10 +2,7 @@ PyMSI
 =====
 Collection of python tools for the analysis of Mass Spectrometry Imaging datasets
 
-
-
-Accepted File Formats
----------------------
+## Accepted File Formats
 The module provides function to load the data stored in the following formats. 
 
 Analyze7.5
@@ -16,12 +13,11 @@ The data are stored in three different files:
 
 
 
-Module Structure
-----------------
+## Module Structure
 The module is organized around the following classes:
 
-1) spectrum: low level class which contains mz and I for a single spectrum.
-2) speclist: this class represent a collection of spectra with the associated x y coordinates. The constructor requires:
--  a list of mass spectra
-- [x,y] dimensions of the raster 
-- A string representing the geometry of the acquisition. either "S" for meandering or "N" for simple row-wise acquisition
+1. spectrum: low level class which contains mz and I for a single spectrum.
+2. speclist: this class represent a collection of spectra with the associated x y coordinates. The constructor requires:
+	* a list of mass spectra
+	* an optional [x,y] dimensions of the raster 
+	* a string representing the geometry of the acquisition. either "S" for meandering or "N" for simple row-wise acquisition

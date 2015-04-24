@@ -28,19 +28,6 @@ r_importMS = getimportMS()
 
 
 
-## Small scale classes which identifies one spectrum
-class Spectrum:
-    def __init__(self, m):
-        ''' Define the spectrum class '''
-        pippo = np.array(m)
-        self.mz = pippo[:,0]
-        self.intensity = pippo[:,1] 
-    def slice (self,window):
-        ''' Slice a spectrum '''
-        idin = (self.mz < window[1]) & (self.mz > window[0])
-        self.mz = self.mz[idin]
-        self.intensity = self.intensity[idin]
-
 ## For MSI one has to deal with list of spectra, each element
 ## is identified by a x,y position
 ## some methods for normalization and scaling are also included
