@@ -7,11 +7,24 @@
 
 import numpy as np
 from copy import deepcopy
+from PyMSI import spectrum as sp
+
 
 class speclist:
     def __init__(self,mylist,dims = [], geom = "N"):
-        ''' Construct the speclist class from the inputs'''
-        self.spectra = [spectrum(x) for x in mylist]
+        ''' Construct an object of class Speclist
+
+        A speclist is basically a list of objects of class
+        spectrum.
+
+        Args: 
+         mylist : a list of 2D lists with mz and I values
+         dims = [x,y] : the dimensions of the MDI dataset
+         geom (string): the string indicating the geometry of the 
+           acquisition. Either S for meandering or N for row wise 
+           acquisition
+        '''
+        self.spectra = [sp.spectrum(x) for x in mylist]
         if (dims != []):
             ys = np.repeat(range(0,dims[1]),dims[0])
             xs = np.repeat(range(0,dims[0]),dims[1])
@@ -33,7 +46,9 @@ class speclist:
         	s.intensity = s.intensity[idin]
         return(newspec)
     def ticnorm(self):
-        ''' Perfor a total ion current normalization of the spectra'''
+        ''' Perform a total ion current normalization of the spectra'''
         for i in range(0,len(self.spectra)):
             self.spectra[i].intensity = self.spectra[i].intensity/sum(self.spectra[i].intensity)
    
+
+   ## We could add a method for scaling with custom functions ....
