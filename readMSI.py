@@ -77,6 +77,7 @@ def readAnalyzet2m(filename):
 
 ## read img
 
+<<<<<<< HEAD
 def readAnalyzeimg(filename,mass,nx,ny,massrange = []):
   '''Function reading intensity file, it requires the mass file as an input.
   Here user can define mass range to get spectra for specific mass range
@@ -101,8 +102,6 @@ def readAnalyzeimg(filename,mass,nx,ny,massrange = []):
       spectrum = np.vstack([mass,spcarr]).transpose()
       mylist.append(spectrum[id,:])
   return(mylist)
-
-
 
 
 ## Wrapper which uses the three previous functions ...
