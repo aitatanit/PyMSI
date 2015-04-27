@@ -69,7 +69,7 @@ def readAnalyzet2m(filename):
 
 ## read img
 
-    def readAnalyzeimg(filename,mass,nx,ny,massrange=[]):
+def readAnalyzeimg(filename,mass,nx,ny,massrange=[]):
         '''Function reading intensity file, input required mass file and nx ,ny value, which shows number of spectra in
         MSI data. Here user can define mass range to get spectra for specific mass range'''
         if (massrange == []):
