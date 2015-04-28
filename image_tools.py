@@ -28,38 +28,6 @@ r_importMS = getimportMS()
 
 
 
-# ## For MSI one has to deal with list of spectra, each element
-# ## is identified by a x,y position
-# ## some methods for normalization and scaling are also included
-# class Speclist:
-#     def __init__(self,mylist):
-#         ''' A list of spectra'''
-#         self.spectra = [Spectrum(x) for x in mylist]
-#     def __getitem__(self,index):
-#         return self.spectra[index]
-#     def slice(self,window):
-#         ''' Slice a Speclist with a window (mzmin,mzmax)'''
-#         for s in self.spectra:
-#             s.slice(window)
-#     def addcoordinates(self,xscans,yscans):
-#         ''' Add the coordinates to each spectrum '''
-#         ys = np.repeat(range(0,yscans),xscans)
-#         xs = np.repeat(range(0,xscans),yscans)
-#         xs = xs.reshape((xscans,yscans))
-#         xs[:,range(1,yscans,2)] = xs[::-1,range(1,yscans,2)]
-#         xs = xs.flatten('F')
-#         for i in range(0,len(self.spectra)):
-#             self.spectra[i].x = xs[i]
-#             self.spectra[i].y = ys[i]
-#     def radq(self):
-#         ''' Performa square root transforamtion of all the spectra'''
-#         for i in range(0,len(self.spectra)):
-#             self.spectra[i].intensity = np.sqrt(self.spectra[i].intensity)
-#     def ticnorm(self):
-#         ''' Perfor a total ion current normalization of the spectra'''
-#         for i in range(0,len(self.spectra)):
-#             self.spectra[i].intensity = self.spectra[i].intensity/sum(self.spectra[i].intensity)
-
 
 
 
@@ -131,49 +99,6 @@ class Masks:
 
 
 
-## Two classes which take care of image registration
-## hooks keeps corresponding points in the destination and source
-## the class hooks creator takes care of the interactive selecion of the points
-
-class Hooks:
-    def __init__(self,src,dst):
-        self.src = src
-        self.dst = dst
-
-
-class HookCreator:
-    def __init__(self,srcaxes,dstaxes):
-        self.srcaxes = srcaxes
-        self.dstaxes = dstaxes
-        self.old_x = []
-        self.old_y = []
-        self.new_x = []
-        self.new_y = []
-        self.sub = []
-        self.src = []
-        self.dst = []
-    def over_method(self,event):
-        self.sub = event.inaxes
-    def click_method(self, event):
-        ## want to pick points only if nothing is selected in the toolbar ...
-        toolbar = plt.get_current_fig_manager().toolbar  
-        if toolbar.mode =='':
-            if self.sub == self.srcaxes:
-                self.old_x.append(round(event.xdata))
-                self.old_y.append(round(event.ydata))
-                self.srcaxes.scatter(self.old_x,self.old_y, s = 40, c = 'Lime')
-                plt.draw()
-                if event.button != 1:
-                    self.src.append(np.transpose(np.vstack([np.array(self.old_x),np.array(self.old_y)])))
-            if self.sub == self.dstaxes:
-                self.new_x.append(round(event.xdata))
-                self.new_y.append(round(event.ydata))
-                self.dstaxes.scatter(self.new_x,self.new_y, s = 40, c = 'Lime')
-                plt.draw()
-                if event.button != 1:
-                    self.dst.append(np.transpose(np.vstack([np.array(self.new_x),np.array(self.new_y)])))
-    def gethooks(self):
-        return Hooks(self.src[0],self.dst[0])
 
 
 
