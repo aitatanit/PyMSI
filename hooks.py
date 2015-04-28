@@ -2,7 +2,7 @@
 ## allows the interactive selection of corresponding points
 ## and returns a list with source and destination points
 
-import import pylab as plt
+import pylab as plt
 import numpy as np
 
 
@@ -21,39 +21,39 @@ def hookthem(srcmatrix,dstmatrix):
     '''
     ## define the class taking care of the event handling.
     class HookCreator:
-    def __init__(self,srcaxes,dstaxes):
-        self.srcaxes = srcaxes
-        self.dstaxes = dstaxes
-        self.old_x = []
-        self.old_y = []
-        self.new_x = []
-        self.new_y = []
-        self.sub = []
-        self.src = []
-        self.dst = []
-    def over_method(self,event):
-        self.sub = event.inaxes
-    def click_method(self, event):
-        ## want to pick points only if nothing is selected in the toolbar ...
-        toolbar = plt.get_current_fig_manager().toolbar  
-        if toolbar.mode =='':
-            if self.sub == self.srcaxes:
-                if event.button == 1:
-                    self.old_x.append(round(event.xdata))
-                    self.old_y.append(round(event.ydata))
-                    self.srcaxes.scatter(self.old_x,self.old_y, s = 40, c = 'Lime')
-                    plt.draw()
-            if self.sub == self.dstaxes:
-                if event.button == 1:
-                    self.new_x.append(round(event.xdata))
-                    self.new_y.append(round(event.ydata))
-                    self.dstaxes.scatter(self.new_x,self.new_y, s = 40, c = 'Lime')
-                    plt.draw()
-            if event.button !=1:
-                self.src.append(np.transpose(np.vstack([np.array(self.old_x),np.array(self.old_y)])))
-                self.dst.append(np.transpose(np.vstack([np.array(self.new_x),np.array(self.new_y)])))
-    def gethooks(self):
-        return self.src[0],self.dst[0]
+        def __init__(self,srcaxes,dstaxes):
+            self.srcaxes = srcaxes
+            self.dstaxes = dstaxes
+            self.old_x = []
+            self.old_y = []
+            self.new_x = []
+            self.new_y = []
+            self.sub = []
+            self.src = []
+            self.dst = []
+        def over_method(self,event):
+            self.sub = event.inaxes
+        def click_method(self, event):
+             ## want to pick points only if nothing is selected in the toolbar ...
+            toolbar = plt.get_current_fig_manager().toolbar  
+            if toolbar.mode =='':
+                if self.sub == self.srcaxes:
+                    if event.button == 1:
+                        self.old_x.append(round(event.xdata))
+                        self.old_y.append(round(event.ydata))
+                        self.srcaxes.scatter(self.old_x,self.old_y, s = 40, c = 'Lime')
+                        plt.draw()
+                if self.sub == self.dstaxes:
+                    if event.button == 1:
+                        self.new_x.append(round(event.xdata))
+                        self.new_y.append(round(event.ydata))
+                        self.dstaxes.scatter(self.new_x,self.new_y, s = 40, c = 'Lime')
+                        plt.draw()
+                if event.button !=1:
+                    self.src.append(np.transpose(np.vstack([np.array(self.old_x),np.array(self.old_y)])))
+                    self.dst.append(np.transpose(np.vstack([np.array(self.new_x),np.array(self.new_y)])))
+        def gethooks(self):
+            return self.src[0],self.dst[0]
     ## create the figure
     fig = plt.figure()
     inx = fig.add_subplot(1,2,1)
@@ -70,6 +70,3 @@ def hookthem(srcmatrix,dstmatrix):
     return(myhooks.gethooks())
 
  
-
-
-
