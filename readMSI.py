@@ -82,7 +82,7 @@ def readAnalyzeimg(filename,mass,nx,ny,massrange = []):
   The user can define mass range to get spectra for specific mass range
   '''
   if (massrange == []):
-    mass1, mass2 = min(mass)[0], max(mass)[0]
+    mass1, mass2 = min(mass), max(mass)
   else:
     mass1, mass2 = massrange[0], massrange[1]
   id = (mass >= mass1) & (mass <= mass2)
@@ -94,6 +94,7 @@ def readAnalyzeimg(filename,mass,nx,ny,massrange = []):
       spcarr = np.zeros(len(mass))
       for i in range(mass.size):
         if not id[i]:
+          f.seek(bytes,1)
           continue 
         test = struct.unpack(endian,f.read(bytes))[0]
         spcarr[i] = test

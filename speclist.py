@@ -19,7 +19,7 @@ class speclist:
 
         Args: 
          mylist : a list of 2D lists with mz and I values
-         dims = [x,y] : the dimensions of the MDI dataset
+         dims = [nx,ny] : the dimensions of the MDI dataset
          geom (string): the string indicating the geometry of the 
            acquisition. Either S for meandering or N for row wise 
            acquisition
