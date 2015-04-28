@@ -1,6 +1,6 @@
 import numpy as np
 import os, sys, struct
-from PyMSI import speclist as sl
+from PyMSI.speclist import speclist 
 ## This file contains all the functions used to read
 ## imaging dataset from different open source file formats
 
@@ -106,8 +106,14 @@ def readAnalyzeimg(filename,mass,nx,ny,massrange = []):
 ## Wrapper which uses the three previous functions ...
 
 def readAnalyze(filename, massrange = []):
-  '''
-  Import the analyze stuff ...
+  ''' Read a MSI dataset in Analyze 7.5  format
+
+  Args:
+  filename: a string with the name of the dataset without extension
+  massrange: a list specifying the mass range to be imported [mzmin,mzmax]
+
+  Return:
+  An object of class speclist
   '''
   print("Reading the Header infos \n")
   header = readAnalyzeheader(filename + ".hdr")
@@ -116,7 +122,7 @@ def readAnalyze(filename, massrange = []):
   print("Reading the Spectra")
   mylist = readAnalyzeimg(filename + ".img", mass, header[0], header[1], massrange)
   ## format it as a speclist object
-  output = sl.speclist(mylist,[header[0], header[1]])
+  output = speclist(mylist,[header[0], header[1]])
   return(output)
 
 

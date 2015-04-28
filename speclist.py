@@ -7,7 +7,7 @@
 
 import numpy as np
 from copy import deepcopy
-from PyMSI import spectrum as sp
+from PyMSI.spectrum import spectrum
 
 
 class speclist:
@@ -24,7 +24,7 @@ class speclist:
            acquisition. Either S for meandering or N for row wise 
            acquisition
         '''
-        self.spectra = [sp.spectrum(x) for x in mylist]
+        self.spectra = [spectrum(x) for x in mylist]
         if (dims != []):
             ys = np.repeat(range(0,dims[1]),dims[0])
             xs = np.repeat(range(0,dims[0]),dims[1])
