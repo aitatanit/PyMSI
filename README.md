@@ -54,9 +54,9 @@ id = interested spectra number, show = 'Y' will save spectra plot in given folde
 
 -Suppose from above spectra plot we are interested in creating ion-intensity image for m/z [289, 290], to be noted it will take value just before 290 i.e. in m/z 290 will be not included, to make include mention one higher m/z value
 
-`spec = readAnalyze('/home/Documents/data/ABX/',massrange =[280,290]) # extracting data in the form of list`
+`spec = readAnalyze('/home/Documents/data/ABX/',massrange =[280,290]) `   extracting data in the form of list
 
-`mat = msiMatrix(spec)                 # converting list object into matrix`
+`mat = msiMatrix(spec) `      converting list object into matrix
 
 `Image = mat.matrix `
 
