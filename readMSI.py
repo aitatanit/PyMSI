@@ -116,12 +116,30 @@ def readAnalyze(filename, massrange = []):
   Return:
   An object of class speclist
   '''
+  path = path
+  massrange = massrange
+  dirs = os.listdir(path)
+  for file in dirs:
+      if (file.endswith('.hdr') == True):
+         filename1 = file
+      if (file.endswith('.t2m') == True):
+         filename2 = file
+      if (file.endswith('.img') == True):
+         filename3 = file
+     
+  if(filename1 == "" or filename2 == "" or filename3 == ""):
+         sys.exit("Incomplete analyze folder found")
+  stre = "/"
+  f1 = (path,filename1); filename1 = stre.join(f1)
+  f2 = (path,filename2); filename2 = stre.join(f2)
+  f3 = (path,filename3); filename3 = stre.join(f3)
+ 
   print("Reading the Header infos \n")
-  header = readAnalyzeheader(filename + ".hdr")
+  header = readAnalyzeheader(filename1)
   print("Image size: " + str(header[0]) + "*" + str(header[1]) + " \n")
-  mass = readAnalyzet2m(filename + ".t2m")
+  mass = readAnalyzet2m(filename2)
   print("Reading the Spectra")
-  mylist = readAnalyzeimg(filename + ".img", mass, header[0], header[1], massrange)
+  mylist = readAnalyzeimg(filename3, mass, header[0], header[1], massrange)
   ## format it as a speclist object
   output = speclist(mylist,[header[0], header[1]])
   return(output)
