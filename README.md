@@ -35,7 +35,7 @@ The module is organized around the following classes:
 
 This command will automatically read data from individual sub-folder. User can define desire mass range, in case of blank default mass range will consider. Default option for matrix_save and image_plot is N, while making them 'Y' each image matrix and corresponding image will save with repsective folder name in path folder.
 
-#### Example 2. Decide mass range by looking at complete mass spectra
+#### Example 2. Decide mass range by looking at complete mass spectra and then create ion-intensity map
 
 -----------------------------------------------------------------------------------------------------------------------
 
