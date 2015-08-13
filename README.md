@@ -40,8 +40,8 @@ This command will automatically read data from individual sub-folder. User can d
 -----------------------------------------------------------------------------------------------------------------------
 
 This could be done at two steps: 
-* 1) generate mass spectra plot for desired pixel position
-* 2) looking at spectra plot decide desire mass range and use as input 
+ 1) generate mass spectra plot for desired pixel position
+ 2) looking at spectra plot decide desire mass range and use as input 
 
 `import PyMSI as py`
 
@@ -52,13 +52,13 @@ This could be done at two steps:
 `mass = py.readMSI.readAnalyzet2m('/home/Documents/data/ABX/2009.t2m')`
 
 `intensity = py.PlotSpectra('/home/Documents/data/ABX/2009.img',mass,id = '21',show='N') `
-id = interested spectra number, show = 'Y' will save spectra plot in given folder
+                                  id = interested spectra number, show = 'Y' will save spectra plot in given folder
 
-* Suppose from above spectra plot we are interested in creating ion-intensity image for m/z [289, 290], to be noted it will take value just before 290 i.e. in m/z 290 will be not included, to make include mention one higher m/z value
+* Suppose from above spectra plot we are interested in creating ion-intensity image for m/z [289, 290], to be noted it   will take value just before 290 i.e. in m/z 290 will be not included, to make include mention one higher m/z value
 
 `spec = readAnalyze('/home/Documents/data/ABX/',massrange =[280,290]) `   extracting data in the form of list
 
-`mat = msiMatrix(spec) `      converting list object into matrix
+`mat = msiMatrix(spec) `                                                   converting list object into matrix
 
 `Image = mat.matrix `
 
