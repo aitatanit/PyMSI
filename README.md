@@ -26,13 +26,13 @@ The module is organized around the following classes:
 
 #### Example 1. Reading folder cotaining multiple datafiles as once
 
-''' This command will automatically read data from individual sub-folder. User can define desire mass range, in case of blank default mass range will consider. Default option for matrix_save and image_plot is N, while making them 'Y' each image matrix and corresponding image will save with repsective folder name in path folder.'''
+This command will automatically read data from individual sub-folder. User can define desire mass range, in case of blank default mass range will consider. Default option for matrix_save and image_plot is N, while making them 'Y' each image matrix and corresponding image will save with repsective folder name in path folder.
 
-import PyMSI as py
+`import PyMSI as py`
 
-path = '/home/Documents/data/' # This folder contains 3sub-folders represent individual MSI data
+`path = '/home/Documents/data/' # This folder contains 3sub-folders represent individual MSI data`
 
-py.AnalyzeData(path,massrange=[],matrix_save='Y',image_plot='Y') 
+`py.AnalyzeData(path,massrange=[],matrix_save='Y',image_plot='Y') `
 
 
 #### Example 2. Decide mass range by looking at complete mass spectra
