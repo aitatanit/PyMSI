@@ -27,31 +27,42 @@ The module is organized around the following classes:
 #### Example 1. Reading folder cotaining multiple datafiles as once
 
 `import PyMSI as py`
+
 `path = '/home/Documents/data/' # This folder contains 3sub-folders represent individual MSI data`
+
 `py.AnalyzeData(path,massrange=[],matrix_save='Y',image_plot='Y') `
 
 This command will automatically read data from individual sub-folder. User can define desire mass range, in case of blank default mass range will consider. Default option for matrix_save and image_plot is N, while making them 'Y' each image matrix and corresponding image will save with repsective folder name in path folder.
-¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+
 #### Example 2. Decide mass range by looking at complete mass spectra
 This could be done at two steps: 1) generate mass spectra plot for desired pixel position; 2) looking at spectra plot decide desire mass range and use as input 
 
 `import PyMSI as py`
+
 `import matplotlib.pyplot as plt`
+
 `import numpy as np`
 
 `mass = py.readMSI.readAnalyzet2m('/home/Documents/data/ABX/2009.t2m')`
+
 `intensity = py.PlotSpectra('/home/Documents/data/ABX/2009.img',mass,id = '21',show='N') `
 - id = interested spectra number, show = 'Y' will save spectra plot in given folder
 
 Suppose from above spectra plot we are interested in creating ion-intensity image for m/z [289, 290], to be noted it will take value just before 290 i.e. in m/z 290 will be not included, to make include mention one higher m/z value
 
-spec = readAnalyze('/home/Documents/data/ABX/',massrange =[280,290]) # extracting data in the form of list
-mat = msiMatrix(spec)                 # converting list object into matrix
-Image = mat.matrix 
-Image = np.sqrt(Image)
-Image = np.ceil(Image)
-plt.imshow(Image,interpolation='None')
-plt.show()
+`spec = readAnalyze('/home/Documents/data/ABX/',massrange =[280,290]) # extracting data in the form of list`
+
+`mat = msiMatrix(spec)                 # converting list object into matrix`
+
+`Image = mat.matrix `
+
+`Image = np.sqrt(Image)`
+
+`Image = np.ceil(Image)`
+
+`plt.imshow(Image,interpolation='None')`
+
+`plt.show()`
 
 
 
