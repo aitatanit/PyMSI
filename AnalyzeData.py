@@ -9,16 +9,15 @@ import os
 import numpy as np
 import struct
 
-def PlotSpectra(mass,filename,id= '10',show='N'):
+def PlotSpectra(mass,filename,id= '10',showspectra='N'):
      spectra = np.zeros(shape=(mass.size))
      f = open(filename,'rb')
      f.seek(mass.size * int(id) * 2)
      for i in xrange(mass.size):
        spectra[i] = struct.unpack('H',f.read(2))[0]
-     plt.plot(mass,spectra)
-     if(show == 'Y'):
-        plt.savefig('Spectraplot.jpg')
-     plt.show()
+     if(showspectra == 'Y'):
+        plt.plot(mass,spectra) 
+        plt.show()
      return(spectra)
 
 def AnalyzeData(path,massrange=[],matrix_save ='N',image_plot='N'):
