@@ -42,7 +42,7 @@ AnalyzeData command used to read and save data. Input requires to this command i
 To save data folder name will use as file name.
 
 
-#### Example 2. Plot complete mass spectra and then create ion-intensity map
+#### Example 2. Plot complete mass spectrum and then create ion-intensity map
 
 -----------------------------------------------------------------------------------------------------------------------
 
