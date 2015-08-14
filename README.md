@@ -28,7 +28,9 @@ The module is organized around the following classes:
 
 -----------------------------------------------------------------------------------------------------------------------
 ```import PyMSI as py
+
    path = '/home/Documents/data/
+   
    py.AnalyzeData(path,massrange=[],matrix_save='Y',image_plot='Y') ```
 
 First line command will load module into variable py
