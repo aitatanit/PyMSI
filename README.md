@@ -28,19 +28,15 @@ The module is organized around the following classes:
 
 -----------------------------------------------------------------------------------------------------------------------
 ```javascript
-import PyMSI as py
+import PyMSI as py      // load module into variable py
 
-path = '/home/Documents/data/' 
+path = '/home/Documents/data/'  // define folder path. Here data folder contains 3 sub-folders represent different MSI data
    
 py.AnalyzeData(path,massrange=[],matrix_save='Y',image_plot='Y') 
 
 ```
 
-First line command will load module into variable py
-
-Folder path defined in the second line. Here data folder contains 3 sub-folders represent different MSI data
-
-Finally in the third line AnalyzeData command used. Input requires to this command is: folder path, desired m/z range (in case of blank complete m/z scale will be considered), matrix_save to save image matrix as csv file and image_plot to save ion-intensity image for each dataset. 
+AnalyzeData command used to read and save data. Input requires to this command is: folder path, desired m/z range (in case of blank complete m/z scale will be considered), matrix_save to save image matrix as csv file and image_plot to save ion-intensity image for each dataset. 
 
 To save data folder name will use as file name.
 
@@ -58,20 +54,20 @@ This could be done in two steps:
 ```javascript
 import PyMSI as py
 
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt  // default python package required to make plot
 
 import numpy as np
 
-mass = py.readMSI.readAnalyzet2m('/home/Documents/data/ABX/2009.t2m')
+mass = py.readMSI.readAnalyzet2m('/home/Documents/data/ABX/2009.t2m') // read mass file
 
 intensity = py.PlotSpectra(path = '/home/Documents/data/ABX/2009.img',mass= mass,id = '21',showspectra='Y') 
+
+plt.plot(mass,intensity)
+
+plt.show()
 ```                                  
 
-Line number 1 to 3 will load require packages.
-
-py.readMSI.readAnalyzet2m command used to read mass data
-
-py.PlotSpectra command used to plotspectra and save intensity value into variable called intensity. Inputs required here are: path = path of image file, mass = variable contains m/z data, id = interested spectra number, showspectra = 'Y' will plot spectra on screen
+Here py.PlotSpectra command used to plotspectra and save intensity value into variable called intensity. Input required here are: path = path of image file, mass = variable contains m/z data, id = interested spectra number, showspectra = 'Y' will plot spectra on screen
 
 * step 2
 
