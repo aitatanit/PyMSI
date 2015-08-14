@@ -55,16 +55,17 @@ This could be done in two steps:
 
 * step 1
 
-`import PyMSI as py`
+```javascript
+import PyMSI as py
 
-`import matplotlib.pyplot as plt`
+import matplotlib.pyplot as plt
 
-`import numpy as np`
+import numpy as np
 
-`mass = py.readMSI.readAnalyzet2m('/home/Documents/data/ABX/2009.t2m')`
+mass = py.readMSI.readAnalyzet2m('/home/Documents/data/ABX/2009.t2m')
 
-`intensity = py.PlotSpectra(path = '/home/Documents/data/ABX/2009.img',mass= mass,id = '21',showspectra='Y') `
-                                  
+intensity = py.PlotSpectra(path = '/home/Documents/data/ABX/2009.img',mass= mass,id = '21',showspectra='Y') 
+```                                  
 
 Line number 1 to 3 will load require packages.
 
@@ -76,20 +77,21 @@ py.PlotSpectra command used to plotspectra and save intensity value into variabl
 
 Suppose from above spectra plot we are interested in creating ion-intensity image for m/z [289, 290] we will do as commands given below.
 
-`spec = readAnalyze('/home/Documents/data/ABX/',massrange =[280,290]) `   extracting data in the form of list
+```javascript
+spec = readAnalyze('/home/Documents/data/ABX/',massrange =[280,290])    
 
-`mat = msiMatrix(spec) `                                                   converting list object into matrix
+mat = msiMatrix(spec)                                                 
 
-`Image = mat.matrix `
+Image = mat.matrix 
 
-`Image = np.sqrt(Image)`
+Image = np.sqrt(Image)
 
-`Image = np.ceil(Image)`
+Image = np.ceil(Image)
 
-`plt.imshow(Image,interpolation='None')`
+plt.imshow(Image,interpolation='None')
 
-`plt.show()`
-
+plt.show()
+```
 
 
 
