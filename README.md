@@ -28,7 +28,8 @@ The module is organized around the following classes:
 
 -----------------------------------------------------------------------------------------------------------------------
 ```javascript
-import PyMSI as py      // load module into variable py
+import PyMSI as py      
+// load module into variable py
 
 path = '/home/Documents/data/'  // define folder path. Here data folder contains 3 sub-folders represent different MSI data
    
@@ -68,7 +69,7 @@ plt.plot(mass,intensity)
 plt.show()
 ```                                  
 
-Here py.PlotSpectra command used to spectrum plot and save intensity value into variable called intensity. Input required are: path = path of image file, mass = variable contains m/z data, id = interested spectra number, showspectra = 'Y' will plot spectra on screen
+py.PlotSpectra command used to make spectrum plot and save intensity value into variable called intensity. Input required: path = path of image file, mass = variable contains m/z data, id = interested spectra number, showspectra = 'Y' will plot spectra on screen
 
 * step 2
 
