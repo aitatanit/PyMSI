@@ -38,9 +38,9 @@ py.AnalyzeData(path,massrange=[],matrix_save='Y',image_plot='Y')
 
 First line command will load module into variable py
 
-In the second line path of folder defined. Here data folder contains 3 sub-folders represent different MSI data
+Folder path defined in the second line. Here data folder contains 3 sub-folders represent different MSI data
 
-Final in third line AnalyzeData command used. Input requires to this command is: folder path, desired m/z range (in case of blank complete m/z scale will be considered), matrix_save to save image matrix as csv file and image_plot to save ion-intensity image for each dataset. 
+Finally in the third line AnalyzeData command used. Input requires to this command is: folder path, desired m/z range (in case of blank complete m/z scale will be considered), matrix_save to save image matrix as csv file and image_plot to save ion-intensity image for each dataset. 
 
 To save data folder name will use as file name.
 
