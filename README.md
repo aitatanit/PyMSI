@@ -78,21 +78,19 @@ py.PlotSpectra command used to plotspectra and save intensity value into variabl
 Suppose from above spectra plot we are interested in creating ion-intensity image for m/z [289, 290] we will do as commands given below.
 
 ```javascript
-spec = readAnalyze('/home/Documents/data/ABX/',massrange =[280,290])    
+spec = readAnalyze('/home/Documents/data/ABX/',massrange =[280,290])    //read data as list with two element: mass, intensity
 
-mat = msiMatrix(spec)                                                 
+mat = msiMatrix(spec)     // converting list object into image matrix                                            
 
 Image = mat.matrix 
 
 Image = np.sqrt(Image)
 
-Image = np.ceil(Image)
-
 plt.imshow(Image,interpolation='None')
 
 plt.show()
 ```
-
+> Note : while defining mass range as [280,290] will take values from 280 to just before 290. To make 290 acceptable give one higher index.  
 
 
 
