@@ -54,7 +54,8 @@ This could be done in two steps:
 ```javascript
 import PyMSI as py
 
-import matplotlib.pyplot as plt  // default python package required to make plot
+import matplotlib.pyplot as plt    
+// default python package required to make plot
 
 import numpy as np
 
@@ -67,15 +68,16 @@ plt.plot(mass,intensity)
 plt.show()
 ```                                  
 
-Here py.PlotSpectra command used to plotspectra and save intensity value into variable called intensity. Input required here are: path = path of image file, mass = variable contains m/z data, id = interested spectra number, showspectra = 'Y' will plot spectra on screen
+Here py.PlotSpectra command used to spectrum plot and save intensity value into variable called intensity. Input required are: path = path of image file, mass = variable contains m/z data, id = interested spectra number, showspectra = 'Y' will plot spectra on screen
 
 * step 2
 
-Suppose from above spectra plot we are interested in creating ion-intensity image for m/z [289, 290] we will do as commands given below.
+Suppose from above spectrum plot we are interested in creating ion-intensity image for mass range [289, 290] we will follow commands given below:
 
 ```javascript
-spec = readAnalyze('/home/Documents/data/ABX/',massrange =[280,290])    //read data as list with two element: mass, intensity
-
+spec = readAnalyze('/home/Documents/data/ABX/',massrange =[280,290])   
+ //read data as list with two element: mass, intensity
+ 
 mat = msiMatrix(spec)     // converting list object into image matrix                                            
 
 Image = mat.matrix 
