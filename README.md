@@ -33,9 +33,12 @@ The module is organized around the following classes:
 
 `py.AnalyzeData(path,massrange=[],matrix_save='Y',image_plot='Y') `
 
-First line command load module into variable py
+First line command will load module into variable py
+
 In the second line path of folder defined. Here data folder contains 3 sub-folders represent different MSI data
+
 Final in third line AnalyzeData command used. Input requires to this command is: folder path, desired m/z range (in case of blank complete m/z scale will be considered), matrix_save to save image matrix as csv file and image_plot to save ion-intensity image for each dataset. 
+
 To save data folder name will use as file name.
 
 
@@ -47,7 +50,8 @@ This could be done in two steps:
 1) generate mass spectra plot for desired pixel position
 2) in spectra plot decide mass range of interest and use that as an input for image creation
 
-*step 1
+* step 1
+
 `import PyMSI as py`
 
 `import matplotlib.pyplot as plt`
@@ -59,11 +63,13 @@ This could be done in two steps:
 `intensity = py.PlotSpectra(path = '/home/Documents/data/ABX/2009.img',mass= mass,id = '21',showspectra='Y') `
                                   
 
-From step 1 to 3 we are loading required packages.
+Line number 1 to 3 will load require packages.
+
 py.readMSI.readAnalyzet2m command used to read mass data
+
 py.PlotSpectra command used to plotspectra and save intensity value into variable called intensity. Inputs required here are: path = path of image file, mass = variable contains m/z data, id = interested spectra number, showspectra = 'Y' will plot spectra on screen
 
-*step 2
+* step 2
 
 Suppose from above spectra plot we are interested in creating ion-intensity image for m/z [289, 290] we will do as commands given below.
 
