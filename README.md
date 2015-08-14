@@ -27,11 +27,9 @@ The module is organized around the following classes:
 #### Example 1. Import folder containing multiple data files and save them 
 
 -----------------------------------------------------------------------------------------------------------------------
-`import PyMSI as py`
-
-`path = '/home/Documents/data/'
-
-`py.AnalyzeData(path,massrange=[],matrix_save='Y',image_plot='Y') `
+```import PyMSI as py
+   path = '/home/Documents/data/
+   py.AnalyzeData(path,massrange=[],matrix_save='Y',image_plot='Y') ```
 
 First line command will load module into variable py
 
