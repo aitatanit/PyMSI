@@ -39,7 +39,7 @@ py.AnalyzeData(path,massrange=[],matrix_save='Y',image_plot='Y')
 
 AnalyzeData command used to read and save data. Input requires to this command is: folder path, desired m/z range (in case of blank complete m/z scale will be considered), matrix_save to save image matrix as csv file and image_plot to save ion-intensity image for each dataset. 
 
-To save data folder name will use as file name.
+To save data, folder name will use as file name.
 
 
 #### Example 2. Plot complete mass spectrum and then create ion-intensity map
@@ -48,7 +48,7 @@ To save data folder name will use as file name.
 
 This could be done in two steps: 
 1) generate mass spectra plot for desired pixel position
-2) in spectra plot decide mass range of interest and use that as an input for image creation
+2) in spectra plot, decide mass range of interest and use that as an input for image creation
 
 * step 1
 
@@ -73,7 +73,7 @@ py.PlotSpectra command used to make spectrum plot and save intensity value into 
 
 * step 2
 
-Suppose from above spectrum plot we are interested in creating ion-intensity image for mass range [289, 290] we will follow commands given below:
+Suppose from above spectrum plot, we are interested in creating ion-intensity image for mass range [289, 290] we will follow commands given below:
 
 ```javascript
 spec = readAnalyze('/home/Documents/data/ABX/',massrange =[280,290])   
