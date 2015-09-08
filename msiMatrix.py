@@ -17,9 +17,9 @@ class msiMatrix:
     '''
     nx = max([s.x for s in speclist.spectra])+1
     ny = max([s.y for s in speclist.spectra])+1
-    self.matrix = np.zeros([ny,nx])
+    self.matrix = np.zeros([nx,ny])
     for s in speclist.spectra:
-        self.matrix[s.y,s.x] = sum(s.intensity)
+        self.matrix[s.x,s.y] = sum(s.intensity)
   def __call__(self):
     return self.marix
   
