@@ -13,7 +13,6 @@ import numpy as np
 from skimage import filter
 import argparse
 
-
 def getidmaxIntensity(filename,mass):
     spectra = np.zeros(shape=(mass.size))
     f = open(filename,'rb')
