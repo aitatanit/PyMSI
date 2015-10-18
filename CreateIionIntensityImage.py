@@ -89,6 +89,7 @@ def main():
         outputm = path + listing[im] + '_maski.csv'
         outputf = path + listing[im] + '.jpg'
         plt.imshow(Image,interpolation='None')
+        plt.colorbar()
         np.savetxt(outputi,Image,fmt='%-7.5f',delimiter=',')
         np.savetxt(outputm,mask,fmt='%-3.2f',delimiter=',')
         plt.savefig(outputf,bbox_inches='tight')
