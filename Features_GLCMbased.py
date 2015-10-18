@@ -1,3 +1,8 @@
+'''
+Command to run script : 
+~/Documents/MSimaging$ python Features_Coocurrencematrix.py -f '~/Documents/MSimaging/Images/A1.csv'
+
+'''
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
