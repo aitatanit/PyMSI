@@ -1,3 +1,10 @@
+'''
+This function based on contour of tissue object. Hence input file will be mask image matrix csv file.
+Command to run script : 
+~/Documents/MSimaging$ python Features_Coocurrencematrix.py -f '~/Documents/MSimaging/Images/A1_maski.csv'
+
+'''
+
 import numpy as np
 import argparse
 import cv2
