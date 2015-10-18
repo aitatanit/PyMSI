@@ -1,3 +1,9 @@
+'''
+Command to run script : 
+~/Documents/MSimaging$ python Features_Firstorderstatistics.py -f '~/Documents/MSimaging/Images/A1.csv'
+
+'''
+
 import numpy as np
 from scipy import stats
 import argparse
