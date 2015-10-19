@@ -108,6 +108,7 @@ def main():
         plt.imshow(Image,interpolation='None')
         plt.colorbar()
         plt.savefig(outputf,bbox_inches='tight')
+        plt.close()
         
                 
 if __name__ == '__main__':
