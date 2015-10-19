@@ -4,8 +4,7 @@ a) Create mask image : find m/z value belong to highest intensisty value from th
 (using getidmaxIntensity function) and then create mask image for that m/z value
 b) Create drug image for user defined mass range value
 c) superimpose mask image on drug image
-d) Normalized intensity value for tissue object within drug image (1-52). 52 value will assign to background, it will help to remove specific row and column during co-occurence matrix calculation.
-                        
+                     
 '''
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -70,21 +69,9 @@ def creatImage(address,massrange=[]):
     ### Creating drug mask image
     
     Imgdrug = Imgdrug * mask
-    
-    #### Normalized intensity value within range 1-52
-    
-    nImin = np.sort(Imgdrug)[1] ; nImax = np.max(Imgdrug)
-    result = np.zeros(shape=(Imgdrug.shape))
-    for x in range(0,Imgdrug.shape[0]):
-        for y in range(0,Imgdrug.shape[1]):
-            if Imgdrug[x,y] == 0:
-               result[x,y] = (52)
-            else:
-               result[x,y] = ((Imgdrug[x,y] - nImin) *((50 - 1)/ (nImax - nImin))) + 1
-                      
-    result = np.ceil(result)
-    result = ndimage.median_filter(result,3)    
-    return(result,mask)
+    Imgdrug = np.ceil(Imgdrug)
+    Imgdrug = ndimage.median_filter(Imgdrug,3)    
+    return(Imgdrug,mask)
 
 def main():    
     parser = argparse.ArgumentParser(description="Creat ion intensity image with uniform background")
