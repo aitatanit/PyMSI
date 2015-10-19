@@ -86,7 +86,7 @@ def glcmfeatures(Image,d):
         for j in range(len(a)):
             g = greycomatrix(Image,[d[i]],[a[j]],levels=np.int32(np.max(Image)+1))
             g = g.reshape(g.shape[0],g.shape[1])
-            g[g.shape[0]-1,g.shape[1]-1] = 0                   ## providing zero value to lower extreme right cell, since we keeping highest value for background which belongs to this cell
+          #  g[g.shape[0]-1,g.shape[1]-1] = 0                   ## providing zero value to lower extreme right cell, since we keeping highest value for background which belongs to this cell
             g = g.astype(np.float)
             g = (g/np.sum(g))                                 ## Normalization of gray level co-occurrence matrix
             temp[j,:] = gray_features(g)
