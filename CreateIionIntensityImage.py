@@ -1,6 +1,6 @@
 '''
 Step-wise opertions performed by following script:
-a) Create mask image : find m/z value belongs to highest intensisty value from the region outside the tissue area 
+a) Create mask image : find m/z value belong to highest intensisty value from the region outside the tissue area 
 (using getidmaxIntensity function) and then create mask image for that m/z value
 b) Create drug image for user defined mass range value
 c) superimpose mask image on drug image
@@ -112,7 +112,6 @@ def main():
         print("Reading filename " + str(listing[im]))
         Image,mask = creatImage(address,massrange=[])
         outputi = path + listing[im] + '_image.csv'
-#        outputi = path + listing[im] + '_image.csv' '{} {} _image.csv' .format(path,listing[im])
         outputm = path + listing[im] + '_maski.csv'
         outputf = path + listing[im] + '.jpg'
         np.savetxt(outputi,Image,fmt='%-7.5f',delimiter=',')
