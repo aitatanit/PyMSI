@@ -31,7 +31,7 @@ Input required : Folder path, mass range
 
 Output : Ion intensity map, Image and segmentation map matrix in csv file
 
-For folder named Images, containing multiple image dataset folder such as A1, A2, A3.
+Suppose for folder named Images, containing multiple image dataset folder such as A1, A2, A3. command line argument will be:
 
 ```javascript
 /Documents/MSimaging/Python/PyMSI$ python CreateIonintensityImage.py --file '~/Documents/MSimaging/Images/' -f 284.2 284.3
