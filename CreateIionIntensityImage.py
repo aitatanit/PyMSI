@@ -64,12 +64,9 @@ def creatImage(address,massrange=[]):
     output1 = speclist(specdrug,[header[0], header[1]])
     maat = msiMatrix.msiMatrix(output1)
     Imgdrug = maat.matrix
+    Imgdrug = Imgdrug * mask
     Imgdrug = np.sqrt(Imgdrug)
     Imgdrug = np.ceil(Imgdrug)        
-    ### Creating drug mask image
-    
-    Imgdrug = Imgdrug * mask
-    Imgdrug = np.ceil(Imgdrug)
     Imgdrug = ndimage.median_filter(Imgdrug,3)    
     return(Imgdrug,mask)
 
