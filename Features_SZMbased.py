@@ -13,7 +13,7 @@ def Sizezonematrixfeatures(Img):
     ro.r('Image <- as.matrix(Image)')
     ro.r('library(radiomics)')
     ro.r('szmatrix <- glszm(Image)')
-    ro.r('szmatrix[nrow(szmatrix),] <- 0')
+   # ro.r('szmatrix[nrow(szmatrix),] <- 0')
     ro.r('szmfeature <- array(NA,dim=c(11,1))')
     ro.r('szmfeature[1,1] <- glszm_SAE(szmatrix)')
     ro.r('szmfeature[2,1] <- glszm_LAE(szmatrix)')
