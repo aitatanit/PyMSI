@@ -22,74 +22,61 @@ The module is organized around the following classes:
 	* an optional [x,y] dimensions of the raster 
 	* a string representing the geometry of the acquisition. either "S" for meandering or "N" for simple row-wise acquisition
 
-## Working with PyMSI module:
+## Usage
 
-#### Example 1. Import folder containing multiple data files and save them 
+#### Creating Ion images 
 
------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
+Input required : Folder path, mass range
+Output : Ion intensity map, Image and segmentation map matrix in csv file
+For folder named Images, containing multiple image dataset folder such as A1, A2, A3.
+
 ```javascript
-import PyMSI as py      
-// load module into variable py
-
-path = '/home/Documents/data/'  // define folder path. Here data folder contains 3 sub-folders represent different MSI data
-   
-py.AnalyzeData(path,massrange=[],matrix_save='Y',image_plot='Y') 
+/Documents/MSimaging/Python/PyMSI$ python CreateIonintensityImage.py --file '~/Documents/MSimaging/Images/' -f 284.2 284.3
 
 ```
 
-AnalyzeData command used to read and save data. Input requires to this command is: folder path, desired m/z range (in case of blank complete m/z scale will be considered), matrix_save to save image matrix as csv file and image_plot to save ion-intensity image for each dataset. 
-
-To save data, folder name will use as file name.
-
-
-#### Example 2. Plot complete mass spectrum and then create ion-intensity map
+#### Calculate first-order statistics based texture features 
 
 -----------------------------------------------------------------------------------------------------------------------
 
-This could be done in two steps: 
-1) generate mass spectra plot for desired pixel position
-2) in spectra plot, decide mass range of interest and use that as an input for image creation
-
-* step 1
+Input required :  image matrix csv file path
+Output : .csv file contains FOS based features value
 
 ```javascript
-import PyMSI as py
-
-import matplotlib.pyplot as plt    
-// default python package required to make plot
-
-import numpy as np
-
-mass = py.readMSI.readAnalyzet2m('/home/Documents/data/ABX/2009.t2m') // read mass file
-
-intensity = py.PlotSpectra(path = '/home/Documents/data/ABX/2009.img',mass= mass,id = '21',showspectra='Y') 
-
-plt.plot(mass,intensity)
-
-plt.show()
+~/Documents/MSimaging$ python Features_Firstorderstatistics.py -f '~/Documents/Msimaging/Images/A1_image.csv'
 ```                                  
+#### Calculate gray-level co-occurence matrix based texture features 
 
-py.PlotSpectra command used to make spectrum plot and save intensity value into variable called intensity. Input required: path = path of image file, mass = variable contains m/z data, id = interested spectra number, showspectra = 'Y' will plot spectra on screen
+-----------------------------------------------------------------------------------------------------------------------
 
-* step 2
-
-Suppose from above spectrum plot, we are interested in creating ion-intensity image for mass range [289, 290] we will follow commands given below:
+Input required : image matrix csv file path, distance parameter value
+Output : csv file contains GLCM based features value
 
 ```javascript
-spec = readAnalyze('/home/Documents/data/ABX/',massrange =[280,290])   
- //read data as list with two element: mass, intensity
- 
-mat = msiMatrix(spec)     // converting list object into image matrix                                            
+~/Documents/MSimaging$ python Features_Coocurrencematrix.py -f '~/Documents/Msimaging/Images/A1_image.csv -d 1'
+``` 
+#### Calculate size-zone matrix based texture features
 
-Image = mat.matrix 
+-----------------------------------------------------------------------------------------------------------------------
 
-Image = np.sqrt(Image)
+Input required : image matrix csv file path
+Output : csv file contains SZM based features value
+Dependency : rpy2 module, and r radiomics library
 
-plt.imshow(Image,interpolation='None')
+```javascript
+~/Documents/MSimaging$ python Features_SZMbased.py -f '~/Documents/Msimaging/Images/A1_image.csv'
+```                                  
+#### Calculate shape factors
 
-plt.show()
-```
-> Note : while defining mass range as [280,290] will take values from 280 to just before 290. To make 290 acceptable give one higher index.  
+-----------------------------------------------------------------------------------------------------------------------
 
+Input required : mask_matrix csv file path
+Output : csv file contains shape factors value
+Dependency : python cv2 module
+
+```javascript
+~/Documents/MSimaging$ python Features_Coocurrencematrix.py -f '~/Documents/MSimaging/Images/A1_maski.csv'
+``` 
 
 
