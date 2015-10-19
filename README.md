@@ -41,6 +41,7 @@ For folder named Images, containing multiple image dataset folder such as A1, A2
 -----------------------------------------------------------------------------------------------------------------------
 
 Input required :  image matrix csv file path
+
 Output : .csv file contains FOS based features value
 
 ```javascript
@@ -51,6 +52,7 @@ Output : .csv file contains FOS based features value
 -----------------------------------------------------------------------------------------------------------------------
 
 Input required : image matrix csv file path, distance parameter value
+
 Output : csv file contains GLCM based features value
 
 ```javascript
@@ -61,7 +63,9 @@ Output : csv file contains GLCM based features value
 -----------------------------------------------------------------------------------------------------------------------
 
 Input required : image matrix csv file path
+
 Output : csv file contains SZM based features value
+
 Dependency : rpy2 module, and r radiomics library
 
 ```javascript
@@ -72,7 +76,9 @@ Dependency : rpy2 module, and r radiomics library
 -----------------------------------------------------------------------------------------------------------------------
 
 Input required : mask_matrix csv file path
+
 Output : csv file contains shape factors value
+
 Dependency : python cv2 module
 
 ```javascript
