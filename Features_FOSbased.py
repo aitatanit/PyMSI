@@ -27,9 +27,9 @@ def main():
     args = parser.parse_args()
     Img = np.genfromtxt(args.filename,dtype=float,delimiter=',')
     Img = Img.flatten()
-    Img_new = Img[Img<np.max(Img)]
+   # Img_new = Img[Img<np.max(Img)]
     result = np.zeros([7,1])
-    result[:,0] = Firstorderstatistics(Img_new)
+    result[:,0] = Firstorderstatistics(Img)
     column= np.array(['Nu of pixles','Intensity sum','Intensity mean','Std deviation','variance','kurtosis','skewness'])
     df = np.column_stack((column,result))
     np.savetxt('FOS_featuresList.csv',df,fmt="%s",delimiter=",")
