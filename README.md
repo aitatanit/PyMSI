@@ -23,8 +23,8 @@ The module is organized around the following classes:
 	* a string representing the geometry of the acquisition. either "S" for meandering or "N" for simple row-wise acquisition
 
 ## Usage
-
-#### Creating Ion images 
+  
+#### Creating ion images 
 
 ----------------------------------------------------------------------------------------------------------------------
 Input required : Folder path, mass range
