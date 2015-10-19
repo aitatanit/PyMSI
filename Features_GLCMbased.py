@@ -1,6 +1,6 @@
 '''
 Command to run script : 
-~/Documents/MSimaging$ python Features_Coocurrencematrix.py -f '~/Documents/MSimaging/Images/A1.csv'
+~/Documents/MSimaging$ python Features_Coocurrencematrix.py -f '~/Documents/MSimaging/Images/A1.csv -d 1'
 
 '''
 #!/usr/bin/env python
