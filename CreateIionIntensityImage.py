@@ -26,6 +26,7 @@ from speclist import speclist
 
 
 def getidmaxIntensity(filename,mass):
+    '''Function return index for m/z value, belong to maximum intensity value'''
     spectra = np.zeros(shape=(mass.size))
     f = open(filename,'rb')
     f.seek(mass.size * int(20) * 2)
@@ -36,8 +37,9 @@ def getidmaxIntensity(filename,mass):
     return(nu)
 
 def creatImage(address,massrange=[]):
-    dirs = os.listdir(address)        
-    ### Create maks image for maximum intensity value from bkg region
+    dirs = os.listdir(address)     
+    
+    '''Create mask image''' 
     for f in dirs:
         if (f.endswith('.img') == True):
            fileimage = f
@@ -63,7 +65,7 @@ def creatImage(address,massrange=[]):
     val = filter.threshold_otsu(Imgbkg)
     mask = Imgbkg < val        
     
-    #### Create drug image 
+    ''' Create drug image ''' 
     specdrug = readMSI.readAnalyzeimg(file1,mass,header[0],header[1],massrange)
     output1 = speclist(specdrug,[header[0], header[1]])
     maat = msiMatrix.msiMatrix(output1)
@@ -71,7 +73,7 @@ def creatImage(address,massrange=[]):
     Imgdrug = np.sqrt(Imgdrug)
     Imgdrug = np.ceil(Imgdrug)        
     
-    ### Combine drug and mask image
+    ''' Combine drug and mask image '''
     
     imgf = []; imgf1 = []
     maskf = mask.flatten()
@@ -83,7 +85,7 @@ def creatImage(address,massrange=[]):
     dat = np.unique(imgf)
     result = np.zeros(shape=(Imgdrug.shape))
     
-    ##### Normalize intensity value within tissue object under range of 1-52
+    ''' Normalize intensity value within tissue object under range of 1-52 '''
     
     for x in range(0,Imgdrug.shape[0]):
         for y in range(0,Imgdrug.shape[1]):
