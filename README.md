@@ -28,7 +28,9 @@ The module is organized around the following classes:
 
 ----------------------------------------------------------------------------------------------------------------------
 Input required : Folder path, mass range
+
 Output : Ion intensity map, Image and segmentation map matrix in csv file
+
 For folder named Images, containing multiple image dataset folder such as A1, A2, A3.
 
 ```javascript
