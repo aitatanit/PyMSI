@@ -58,7 +58,7 @@ def creatImage(address,massrange=[]):
     Imgbkg = mat.matrix 
     val = filter.threshold_otsu(Imgbkg)
     mask = Imgbkg < val    
-    mask = mask.astype(mask)
+    mask = mask.astype(int)
     
     #### Create drug image 
     specdrug = readMSI.readAnalyzeimg(file1,mass,header[0],header[1],massrange)
@@ -68,9 +68,11 @@ def creatImage(address,massrange=[]):
     Imgdrug = np.sqrt(Imgdrug)
     Imgdrug = np.ceil(Imgdrug)        
     ### Creating drug mask image
-    imgf = []; imgf1 = []
     
     Imgdrug = Imgdrug * mask
+    
+    #### Normalized intensity value within range 1-52
+    
     nImin = np.sort(Imgdrug)[1] ; nImax = np.max(Imgdrug)
     result = np.zeros(shape=(Imgdrug.shape))
     for x in range(0,Imgdrug.shape[0]):
